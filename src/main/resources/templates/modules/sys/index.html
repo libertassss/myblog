@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div class="container" id="app">
+        <div>
+            手机号：<input type="text" v-model="userName"/></div><br/>
+            密码：<input type="password" v-model="userPass"/><br/>
+            确认密码：<input type="password" v-model="reUserPass"/><br/>
+            昵称：<input type="text" v-model="userNickname"/><br/>
+            邮箱：<input type="text" v-model="userEmail"/><br/>
+
+
+            <input type="submit" value="注册" @click="register"/>
+
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+                message:'hello vue.js.',
+                userName:'',
+                userPass:'',
+                reUserPass:'',
+                userNickname:'',
+                userEmail:'',
+
+            }
+        },
+        mouted(){
+
+        },
+        methods:{
+            getData(url,data,callback) {
+                var xmlhttp;
+                if(window.XMLHttpRequest)
+                {
+                    xmlhttp=new XMLHttpRequest();
+
+                }else
+                {
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                };
+                xmlhttp.open("POST",url,true);
+                xmlhttp.setRequestHeader("Content-type","application/json");
+                xmlhttp.send(JSON.stringify(data));
+                xmlhttp.onreadystatechange=function() {
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        alert('成功');
+                        callback(xmlhttp.responseText);
+                    }
+                };
+            },
+            register(){
+                var data={
+                    userName:this.userName,
+                    userPass:this.userPass,
+                    userNickname:this.userNickname,
+                    userEmail:this.userEmail
+                }
+                if(this.userPass==this.reUserPass){
+                    this.getData('/register',data,function (res) {
+                        console.log(res);
+                    })
+                }
+
+            }
+        }
+    })
+</script>
+</html>
