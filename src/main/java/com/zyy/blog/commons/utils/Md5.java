@@ -1,4 +1,4 @@
-package com.zyy.blog.commons.controller;
+package com.zyy.blog.commons.utils;
 
 
 import sun.misc.BASE64Encoder;

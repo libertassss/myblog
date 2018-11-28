@@ -1,6 +1,6 @@
 package com.zyy.blog.modules.sys.controller;
 
-import com.zyy.blog.commons.controller.Md5;
+import com.zyy.blog.commons.utils.Md5;
 import com.zyy.blog.modules.sys.dao.UserMapper;
 import com.zyy.blog.modules.sys.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
