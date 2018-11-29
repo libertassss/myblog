@@ -1,7 +1,5 @@
 package com.zyy.blog.modules.sys.controller;
 
-import com.zyy.blog.commons.utils.Md5;
-import com.zyy.blog.modules.sys.dao.UserMapper;
 import com.zyy.blog.modules.sys.entity.User;
 import com.zyy.blog.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-
-import java.util.Date;
 
 
 @Controller
