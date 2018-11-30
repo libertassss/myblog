@@ -1,5 +1,6 @@
 package com.zyy.blog.modules.sys.controller;
 
+import com.zyy.blog.commons.utils.Md5;
 import com.zyy.blog.modules.sys.entity.User;
 import com.zyy.blog.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 
 @Controller
@@ -16,7 +20,7 @@ public class UserController {
     UserService userService;
     @RequestMapping("/register")
     @ResponseBody
-    public String register(@RequestBody User user)  {
+    public String register(@RequestBody User user) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        user.setUserRegisterTime(new Date());
 //        Md5 md5=new Md5();
@@ -27,9 +31,10 @@ public class UserController {
         return "成功";
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/login")
+
     public String login() {
-        return "modules/sys/index";
+        return "modules/sys/user";
     }
 
 }

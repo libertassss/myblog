@@ -7,6 +7,8 @@ public interface UserService {
     /**
      * 数据插入
      */
+
+
     int insert(User user);
 
 }
