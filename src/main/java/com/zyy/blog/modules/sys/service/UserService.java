@@ -11,4 +11,7 @@ public interface UserService {
 
     int insert(User user);
 
+    User login(User user);
+
+    User select(User user);
 }

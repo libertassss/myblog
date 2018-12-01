@@ -193,4 +193,54 @@
       user_status = #{userStatus,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByExample" parameterType="com.zyy.blog.modules.sys.entity.User" resultMap="BaseResultMap">
+    select * from user
+    <where>1=1
+      <if test="userName!=null and userName!=''">
+       and user_name=#{userName}
+      </if>
+
+      <if test="userPass!=null and userPass!=''">
+       and user_pass=#{userPass}
+      </if>
+
+      <if test="userId!=null and userId!=''">
+        and user_id=#{userId}
+      </if>
+
+      <if test="userNickname!=null and userNickname!=''">
+        and user_nickname=#{userNickname}
+      </if>
+
+      <if test="userEmail!=null and userEmail!=''">
+       and user_email=#{userEmail}
+      </if>
+
+      <if test="userUrl!=null and userUrl!=''">
+        and user_url=#{userUrl}
+      </if>
+
+      <if test="userAvatar!=null and userAvatar!=''">
+        and user_avatar=#{userAvatar}
+      </if>
+
+      <if test="userLastLoginIp!=null and userLastLoginIp!=''">
+        and user_login_id=#{userLoginIp}
+      </if>
+
+      <if test="userRegisterTime!=null and userRegisterTime!=''">
+        and user_register_time=#{userRegisterTime}
+      </if>
+
+      <if test="userLastLoginTime!=null and userLastLoginTime!=''">
+        and user_last_login_time=#{userLastLoginTime}
+      </if>
+
+      <if test="userStatus!=null and userStatus!=''">
+        and user_status=#{userStatus}
+      </if>
+
+    </where>
+  </select>
 </mapper>

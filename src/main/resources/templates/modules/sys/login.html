@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        用户名:<input type="number" placeholder="请输入手机号" v-model="userName"/><br/>
+        密码:<input type="password" placeholder="请输入密码" v-model="userPass"/><br/>
+        <input type="submit" value="登录" v-on:click="login"/>
+        <input type="submit" value="查询" v-on:click="fun"/>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data(){
+            return{
+                userName:'',
+                userPass:''
+            }
+        },
+        methods:{
+            getData(url,data,callback) {
+                var xmlhttp;
+                if(window.XMLHttpRequest)
+                {
+                    xmlhttp=new XMLHttpRequest();
+
+                }else
+                {
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                };
+                xmlhttp.open("POST",url,true);
+                xmlhttp.setRequestHeader("Content-type","application/json");
+                xmlhttp.send(JSON.stringify(data));
+                xmlhttp.onreadystatechange=function() {
+                    callback(xmlhttp.responseText);
+                };
+            },
+            login(){
+                var data={
+                    userName:this.userName,
+                    userPass:this.userPass
+                };
+                this.getData('/Dologin',data,function (res) {
+                    console.log(res);
+                })
+
+            },
+            fun(){
+                var data={
+                    userName:this.userName,
+                    userPass:this.userPass
+                };
+                this.getData('/select',data,function (res) {
+                    console.log(res);
+                })
+            }
+        }
+    })
+</script>
+</html>
