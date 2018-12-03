@@ -40,17 +40,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        Md5 md5=new Md5();
-        String userPass= null;
-        try {
-            userPass = md5.EncoderByMd5(user.getUserPass());
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        user.setUserPass(userPass);
-        User result=userMapper.selectByExample(user);
+        User user1=new User();
+        user1.setUserName(user.getUserName());
+        User result=userMapper.selectByExample(user1);
         return result;
     }
 
