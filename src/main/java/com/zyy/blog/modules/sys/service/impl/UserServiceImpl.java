@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -46,8 +46,15 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
-    public User select(User user){
-        User result=userMapper.selectByExample(user);
+    @Override
+    public List<User> selectAllUser(User user){
+        List<User> result= (List<User>) userMapper.selectAllUser(user);
         return result;
     }
+
+    @Override
+    public void updateUser(User user){
+        userMapper.updateByPrimaryKey(user);
+    }
+
 }

@@ -2,6 +2,8 @@ package com.zyy.blog.modules.sys.service;
 
 import com.zyy.blog.modules.sys.entity.User;
 
+import java.util.List;
+
 public interface UserService {
 
     /**
@@ -13,5 +15,6 @@ public interface UserService {
 
     User login(User user);
 
-    User select(User user);
+    List<User> selectAllUser(User user);
+    void updateUser(User user);
 }

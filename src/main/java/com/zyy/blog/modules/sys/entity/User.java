@@ -1,6 +1,8 @@
 package com.zyy.blog.modules.sys.entity;
 
+
 import java.util.Date;
+import java.util.List;
 
 public class User {
     /**

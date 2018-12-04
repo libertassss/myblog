@@ -7,18 +7,12 @@
 </head>
 <body>
     <div class="container" id="app">
-
-            手机号：<input type="text" v-model="userName"/><br/>
-            密码：<input type="password" v-model="userPass"/><br/>
-            确认密码：<input type="password" v-model="reUserPass"/><br/>
-            昵称：<input type="text" v-model="userNickname"/><br/>
-            邮箱：<input type="text" v-model="userEmail"/><br/>
-
-
-
-            <button v-on:click="register">注册</button>
-
-
+        手机号：<input type="text" v-model="userName"/><br/>
+        密码：<input type="password" v-model="userPass"/><br/>
+        确认密码：<input type="password" v-model="reUserPass"/><br/>
+        昵称：<input type="text" v-model="userNickname"/><br/>
+        邮箱：<input type="text" v-model="userEmail"/><br/>
+        <button v-on:click="register">注册</button>
     </div>
 </body>
 <script>
@@ -35,8 +29,7 @@
             }
         },
         mounted(){
-            console.log(this.userName);
-            console.log(this);
+
         },
         methods:{
             getData(url,data,callback) {

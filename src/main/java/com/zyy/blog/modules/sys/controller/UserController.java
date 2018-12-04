@@ -1,6 +1,8 @@
 package com.zyy.blog.modules.sys.controller;
 
 import com.zyy.blog.commons.config.WebSecurityConfig;
+import com.zyy.blog.commons.utils.GetUser;
+import com.zyy.blog.commons.utils.IpUtil;
 import com.zyy.blog.commons.utils.Md5;
 import com.zyy.blog.commons.utils.R;
 import com.zyy.blog.modules.sys.entity.User;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -43,7 +48,7 @@ public class UserController<httpsession> {
 
     @RequestMapping("/Dologin")
     @ResponseBody
-    public R Dologin(@RequestBody User user, HttpSession session) {
+    public R Dologin(@RequestBody User user, HttpSession session, HttpServletRequest request) {
         Md5 md5=new Md5();
         String userPass= null;
         try {
@@ -58,6 +63,11 @@ public class UserController<httpsession> {
             System.out.print(result.getUserPass());
             System.out.print(userPass);
             if (result.getUserPass().equals(userPass)){
+                //获取用户登录ip
+                result.setUserLastLoginIp(IpUtil.getIpAddr(request));
+                result.setUserLastLoginTime(new Date());
+                result.setUserStatus(1);
+                userService.updateUser(result);
                 session.setAttribute(WebSecurityConfig.SESSION_KEY, result.getUserId());
                 Map<String,Object> map = new HashMap<>();
                 map.put("userId",session.getAttribute(WebSecurityConfig.SESSION_KEY));
@@ -70,10 +80,16 @@ public class UserController<httpsession> {
         }
     }
 
-    @RequestMapping("/select")
+    @RequestMapping("/selectAllUser")
     @ResponseBody
-    public User select(@RequestBody User user) {
-       User res= userService.select(user);
-        return res;
+    public R selectAllUser(@RequestBody User user) {
+        List<User> result = userService.selectAllUser(user);
+        Map<String,Object> map = new HashMap<>();
+       if(result!=null){
+           map.put("userInfo",result);
+           return R.ok().put("data",map);
+       }else{
+           return R.error().put("msg","暂无用户列表");
+       }
     }
 }
