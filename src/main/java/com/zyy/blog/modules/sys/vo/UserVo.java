@@ -1,9 +1,8 @@
-package com.zyy.blog.commons.utils;
+package com.zyy.blog.modules.sys.vo;
 
 import java.util.Date;
 
-public class GetUser {
-
+public class UserVo {
     private Integer userId;
 
     private String userName;

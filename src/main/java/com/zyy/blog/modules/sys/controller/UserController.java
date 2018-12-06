@@ -1,7 +1,6 @@
 package com.zyy.blog.modules.sys.controller;
 
 import com.zyy.blog.commons.config.WebSecurityConfig;
-import com.zyy.blog.commons.utils.GetUser;
 import com.zyy.blog.commons.utils.IpUtil;
 import com.zyy.blog.commons.utils.Md5;
 import com.zyy.blog.commons.utils.R;
@@ -9,9 +8,7 @@ import com.zyy.blog.modules.sys.entity.User;
 import com.zyy.blog.modules.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,27 +66,25 @@ public class UserController<httpsession> {
                 result.setUserStatus(1);
                 userService.updateUser(result);
                 session.setAttribute(WebSecurityConfig.SESSION_KEY, result.getUserId());
-                Map<String,Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap();
                 map.put("userId",session.getAttribute(WebSecurityConfig.SESSION_KEY));
-                return R.ok().put("res",map);
+                return R.ok().put("data",map);
             }else{
-                return R.error().put("msg","密码错误");
+                return R.error(200,"密码错误");
             }
         }else{
-            return R.error().put("msg","用户名不存在");
+            return R.error(200,"用户名不存在");
         }
     }
 
     @RequestMapping("/selectAllUser")
     @ResponseBody
-    public R selectAllUser(@RequestBody User user) {
+    public R selectAllUser(User user) {
         List<User> result = userService.selectAllUser(user);
-        Map<String,Object> map = new HashMap<>();
        if(result!=null){
-           map.put("userInfo",result);
-           return R.ok().put("data",map);
+           return R.ok().put("data",result);
        }else{
-           return R.error().put("msg","暂无用户列表");
+           return R.error(200,"暂无用户列表");
        }
     }
 }

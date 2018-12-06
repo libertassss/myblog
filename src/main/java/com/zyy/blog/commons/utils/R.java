@@ -19,7 +19,7 @@ public class R extends HashMap<String,Object> {
         return error(500,msg);
     }
 
-    private static R error(int code, String msg) {
+    public static R error(int code, String msg) {
         R r=new R();
         r.put("code",code);
         r.put("msg",msg);
