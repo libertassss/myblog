@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
         addInterceptor.excludePathPatterns("/Dologin");
         addInterceptor.excludePathPatterns("/select");
         addInterceptor.excludePathPatterns("/selectAllUser");
-        addInterceptor.excludePathPatterns("/insertMenu");
+        addInterceptor.excludePathPatterns("/insertCategory");
         // 拦截配置
         addInterceptor.addPathPatterns("/**");
     }
