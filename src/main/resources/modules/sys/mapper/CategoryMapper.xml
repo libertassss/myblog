@@ -147,4 +147,14 @@
       category_status = #{categoryStatus,jdbcType=INTEGER}
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByExample" parameterType="com.zyy.blog.modules.sys.entity.Category" resultMap="BaseResultMap">
+    select * from category
+       where category_name=#{categoryName}
+
+  </select>
+
+  <select id="selectAllCategory" resultMap="BaseResultMap">
+    select * from category
+  </select>
 </mapper>
