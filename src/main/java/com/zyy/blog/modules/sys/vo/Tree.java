@@ -1,22 +1,25 @@
 package com.zyy.blog.modules.sys.vo;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Tree<T> {
-    private Integer categoryPid;
-    private Integer categoryId;
+    private Integer Parentid;
+    private Integer Id;
     private String categoryName;
     private String categoryDescription;
-    private Tree<Tree> children;
-    public void getCategoryPid(Integer categoryPid){
-        this.categoryPid=categoryPid;
+    private List<Tree<T>> children = new ArrayList<Tree<T>>();
+    public void setParentid(Integer parentid){
+        this.Parentid=parentid;
     }
-    public Integer setCategoryPid(){
-        return categoryPid;
+    public Integer getParentId(){
+        return Parentid;
     }
 
-    public void setCategoryId(Integer categoryId)
+    public void setId(Integer Id)
     {
-        this.categoryId=categoryId;
+        this.Id=Id;
     }
 
     public String getCategoryName(){
@@ -35,12 +38,15 @@ public class Tree<T> {
         this.categoryDescription=categoryDescription;
     }
 
-    public void setChildren(Tree tree){
-        this.children=tree;
+    public void setChildren(List<Tree<T>> children){
+        this.children=children;
     }
 
-    public Tree<Tree> getChildren(){
+    public List<Tree<T>> getChildren(){
         return children;
     }
 
+    public Integer getId() {
+        return Id;
+    }
 }

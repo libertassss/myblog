@@ -4,11 +4,14 @@ import com.zyy.blog.commons.utils.R;
 import com.zyy.blog.modules.sys.dao.CategoryMapper;
 import com.zyy.blog.modules.sys.entity.Category;
 import com.zyy.blog.modules.sys.service.CategoryService;
+import com.zyy.blog.modules.sys.vo.Tree;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class CategoryController {
@@ -34,6 +37,7 @@ public class CategoryController {
     @RequestMapping("/selectAllCategory")
     @ResponseBody
     public R selectAllCategory(){
+        Tree<Category> result=  categoryService.selectAllCategory();
         if(categoryService.selectAllCategory()!=null)
 
             return R.ok().put("data",categoryService.selectAllCategory());

@@ -53,7 +53,7 @@ public interface CategoryMapper {
      */
     int updateByPrimaryKey(Category record);
 
-    Category selectByExample(Category category);
+    List<Category> selectByExample(Category category);
 
     List<Category> selectAllCategory();
 }
