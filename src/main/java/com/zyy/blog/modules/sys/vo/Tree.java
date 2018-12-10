@@ -13,7 +13,7 @@ public class Tree<T> {
     public void setParentid(Integer parentid){
         this.Parentid=parentid;
     }
-    public Integer getParentId(){
+    public Integer getParentid(){
         return Parentid;
     }
 

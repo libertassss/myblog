@@ -157,4 +157,11 @@
   <select id="selectAllCategory" resultMap="BaseResultMap">
     select * from category
   </select>
+
+  <delete id="deleteCategoryMall" parameterType="java.util.List">
+    delete from category where category_id in
+    <foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

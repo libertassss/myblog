@@ -1,6 +1,7 @@
 package com.zyy.blog.modules.sys.dao;
 
 import com.zyy.blog.modules.sys.entity.Category;
+import com.zyy.blog.modules.sys.vo.ParamsVo;
 
 import java.util.List;
 
@@ -56,4 +57,6 @@ public interface CategoryMapper {
     List<Category> selectByExample(Category category);
 
     List<Category> selectAllCategory();
+
+    int deleteCategoryMall(List<Integer> item);
 }

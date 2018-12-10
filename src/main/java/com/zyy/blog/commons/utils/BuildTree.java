@@ -9,15 +9,15 @@ import java.util.List;
 
 public class BuildTree {
 
-    public static <T> Tree<T> build(List<Tree<T>> nodes){
+    public static <T> List<Tree<T>> build(List<Tree<T>> nodes){
         if(nodes==null){
             return null;
         }
         List<Tree<T>> topNodes = new ArrayList<Tree<T>>();
         for(Tree<T> children : nodes){
-            Integer pid=children.getParentId();
-
-            if(pid==null || "".equals(pid) || ("0").equals(pid)){
+            Integer pid=children.getParentid();
+            Integer parentId=0;
+            if(pid==null || "".equals(pid) || parentId.equals(pid)){
                 topNodes.add(children);
                 continue;
             }
@@ -31,14 +31,14 @@ public class BuildTree {
             }
         }
 
-        Tree<T> root = new Tree<T>();
-        if(topNodes.size() == 1){
-            root=topNodes.get(0);
-
-        }else{
-            root.setChildren(topNodes);
-        }
-        return root;
+//        Tree<T> root = new Tree<T>();
+//        if(topNodes.size() == 1){
+//            root=topNodes.get(0);
+//
+//        }else{
+//            root.setChildren(topNodes);
+//        }
+        return topNodes;
     }
 }
 
