@@ -1,21 +1,27 @@
 package com.zyy.blog.modules.sys.service.impl;
 
+
 import com.zyy.blog.commons.utils.BuildTree;
 import com.zyy.blog.modules.sys.dao.CategoryMapper;
 import com.zyy.blog.modules.sys.entity.Category;
 import com.zyy.blog.modules.sys.service.CategoryService;
 import com.zyy.blog.modules.sys.vo.ParamsVo;
 import com.zyy.blog.modules.sys.vo.Tree;
+
+import com.zyy.blog.modules.sys.vo.UserVo;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Transactional
 public class CategoryServiceImpl implements CategoryService {
+
     @Autowired
     CategoryMapper categoryMapper;
 
@@ -38,10 +44,16 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> results=  categoryMapper.selectAllCategory();
         for(Category result:results){
             Tree<Category> tree=new Tree<Category>();
+
             tree.setId(result.getCategoryId());
             tree.setParentid(result.getCategoryPid());
-            tree.setCategoryName(result.getCategoryName());
-            tree.setCategoryDescription(result.getCategoryDescription());
+            try {
+                BeanUtils.copyProperties(tree,result);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
             trees.add(tree);
         }
         List<Tree<Category>> t= BuildTree.build(trees);

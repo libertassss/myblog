@@ -7,9 +7,24 @@ import java.util.List;
 public class Tree<T> {
     private Integer Parentid;
     private Integer Id;
+    private List<Tree<T>> children = new ArrayList<Tree<T>>();
     private String categoryName;
     private String categoryDescription;
-    private List<Tree<T>> children = new ArrayList<Tree<T>>();
+    private void setCategoryName(String CategoryName){
+        this.categoryName=CategoryName;
+    }
+    public String getCategoryName(){
+        return categoryName;
+    }
+
+    public void setCategoryDescription(String CategoryDescription){
+        this.categoryDescription=CategoryDescription;
+    }
+
+    public String getCategoryDescription(){
+        return categoryDescription;
+    }
+
     public void setParentid(Integer parentid){
         this.Parentid=parentid;
     }
@@ -20,22 +35,6 @@ public class Tree<T> {
     public void setId(Integer Id)
     {
         this.Id=Id;
-    }
-
-    public String getCategoryName(){
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName){
-        this.categoryName=categoryName;
-    }
-
-    public String getCategoryDescription(){
-        return categoryDescription;
-    }
-
-    public void setCategoryDescription(String categoryDescription){
-        this.categoryDescription=categoryDescription;
     }
 
     public void setChildren(List<Tree<T>> children){
