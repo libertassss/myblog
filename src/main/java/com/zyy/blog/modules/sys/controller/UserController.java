@@ -43,6 +43,7 @@ public class UserController<httpsession> {
         return "modules/sys/login";
     }
 
+//    登录
     @RequestMapping("/Dologin")
     @ResponseBody
     public R Dologin(@RequestBody User user, HttpSession session, HttpServletRequest request) {
@@ -77,14 +78,26 @@ public class UserController<httpsession> {
         }
     }
 
+//  用户列表
     @RequestMapping("/selectAllUser")
     @ResponseBody
-    public R selectAllUser(User user) {
+    public R selectAllUser(@RequestBody User user) {
         List<User> result = userService.selectAllUser(user);
        if(result!=null){
            return R.ok().put("data",result);
        }else{
            return R.error(200,"暂无用户列表");
        }
+    }
+
+//  删除用户
+    @RequestMapping("/deleteUser")
+    @ResponseBody
+    public R deleteUser(@RequestBody User user){
+        int result=userService.deleteUser(user.getUserId());
+        if(result!=0){
+            return R.ok("删除成功");
+        }else
+            return R.error(500,"删除失败");
     }
 }

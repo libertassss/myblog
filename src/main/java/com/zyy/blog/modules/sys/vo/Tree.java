@@ -10,15 +10,15 @@ public class Tree<T> {
     private List<Tree<T>> children = new ArrayList<Tree<T>>();
     private String categoryName;
     private String categoryDescription;
-    private void setCategoryName(String CategoryName){
-        this.categoryName=CategoryName;
+    public void setCategoryName(String categoryName){
+        this.categoryName = categoryName == null ? null : categoryName.trim();
     }
     public String getCategoryName(){
         return categoryName;
     }
 
-    public void setCategoryDescription(String CategoryDescription){
-        this.categoryDescription=CategoryDescription;
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription == null ? null : categoryDescription.trim();
     }
 
     public String getCategoryDescription(){

@@ -8,7 +8,7 @@ import com.zyy.blog.modules.sys.service.CategoryService;
 import com.zyy.blog.modules.sys.vo.ParamsVo;
 import com.zyy.blog.modules.sys.vo.Tree;
 
-import com.zyy.blog.modules.sys.vo.UserVo;
+
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

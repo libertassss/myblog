@@ -47,7 +47,7 @@ public class CategoryController {
     @RequestMapping("/deleteCategory")
     @ResponseBody
     public R deleteCategory(@RequestBody Category category){
-        if(categoryService.deleteCategory(category.getCategoryId())==1)
+        if(categoryService.deleteCategory(category.getCategoryId())!=0)
             return R.ok("删除成功");
         else
             return R.error(500,"删除失败");
@@ -59,7 +59,7 @@ public class CategoryController {
     @ResponseBody
     public R deleteCategoryMall(@RequestBody ParamsVo paramsVo){
         int result = categoryService.deleteCategoryMall(paramsVo);
-        if(categoryService.deleteCategoryMall(paramsVo)==1){
+        if(result!=0){
             return R.ok("删除成功");
         }else{
             return R.error(500,"删除失败");
