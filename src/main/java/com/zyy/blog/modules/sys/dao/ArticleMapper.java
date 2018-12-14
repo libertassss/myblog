@@ -59,4 +59,5 @@ public interface ArticleMapper {
      * @mbggenerated
      */
     int updateByPrimaryKey(Article record);
+
 }

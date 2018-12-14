@@ -65,4 +65,14 @@ public class CategoryController {
             return R.error(500,"删除失败");
         }
     }
+
+//类别list
+    @RequestMapping("/selectAll")
+    @ResponseBody
+    public R selectAll(){
+        if (categoryService.selectAll()!=null)
+            return R.ok().put("data",categoryService.selectAll());
+        else
+            return R.error(500,"暂无类别");
+    }
 }

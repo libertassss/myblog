@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 @Service
 @Transactional
 public class ArticleServiceImpl implements ArticleService {
@@ -15,6 +17,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int insertSelective(ArticleWithBLOBs articleWithBLOBs){
+        articleWithBLOBs.setArticlePostTime(new Date());
+        articleWithBLOBs.setArticleIsComment(1);
+        articleWithBLOBs.setArticleOrder(1);
         return articleMapper.insertSelective(articleWithBLOBs);
     }
 }

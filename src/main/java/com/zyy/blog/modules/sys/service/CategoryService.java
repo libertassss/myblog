@@ -17,4 +17,6 @@ public interface CategoryService {
     int deleteCategory(Integer categoryId);
 
     int deleteCategoryMall(ParamsVo paramsVo);
+
+    List<Category> selectAll();
 }

@@ -69,4 +69,9 @@ public class CategoryServiceImpl implements CategoryService {
     public int deleteCategoryMall(ParamsVo paramsVo){
         return categoryMapper.deleteCategoryMall(paramsVo.getItem());
     }
+
+    @Override
+    public List<Category> selectAll(){
+        return categoryMapper.selectAllCategory();
+    }
 }

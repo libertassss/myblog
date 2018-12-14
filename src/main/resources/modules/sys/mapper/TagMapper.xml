@@ -111,4 +111,8 @@
       tag_status = #{tagStatus,jdbcType=INTEGER}
     where tag_id = #{tagId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAllTags" resultMap="BaseResultMap">
+    select * from tag
+  </select>
 </mapper>
