@@ -291,4 +291,23 @@
       article_order = #{articleOrder,jdbcType=INTEGER}
     where article_id = #{articleId,jdbcType=INTEGER}
   </update>
+
+  <!--连表-->
+  <resultMap id="WithTagAndCategoryResultMap" type="com.zyy.blog.modules.sys.entity.ArticleWithBLOBs">
+    <id column="article_id" jdbcType="INTEGER" property="articleId" />
+    <association property="categoryName" javaType="com.zyy.blog.modules.sys.entity.Category">
+      <id column="category_id" jdbcType="INTEGER" property="categoryId"></id>
+      <result column="category_name" jdbcType="VARCHAR" property="categoryName"></result>
+    </association>
+
+    <association property="tagName" javaType="com.zyy.blog.modules.sys.entity.Tag">
+      <id column="tag_id" jdbcType="INTEGER" property="tagId"></id>
+      <result column="tag_name" jdbcType="VARCHAR" property="tagName"></result>
+    </association>
+  </resultMap>
+
+  <select id="selectAllArticle" resultMap="WithTagAndCategoryResultMap">
+    select a.article_id,a.article_post_time,a.article_title,u.user_name,c.category_name,t.tag_name from user AS u,category AS c,tag AS t,article AS a where c.category_id=a.article_child_category_id and
+    u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids)
+  </select>
 </mapper>

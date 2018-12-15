@@ -34,4 +34,12 @@ public class ArticleController {
         else return R.error(500,"失败");
     }
 
+    @RequestMapping("/selectAllArticle")
+    @ResponseBody
+    public R selectAllArticle(){
+        if(articleService.selectAllArticle()!=null)
+            return R.ok().put("data",articleService.selectAllArticle());
+        else return R.error(500,"暂无文章列表");
+    }
+
 }

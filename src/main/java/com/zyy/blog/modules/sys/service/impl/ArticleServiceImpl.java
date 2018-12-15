@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,5 +22,10 @@ public class ArticleServiceImpl implements ArticleService {
         articleWithBLOBs.setArticleIsComment(1);
         articleWithBLOBs.setArticleOrder(1);
         return articleMapper.insertSelective(articleWithBLOBs);
+    }
+
+    @Override
+    public List<ArticleWithBLOBs> selectAllArticle(){
+        return articleMapper.selectAllArticle();
     }
 }
