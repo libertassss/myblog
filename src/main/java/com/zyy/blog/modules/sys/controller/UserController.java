@@ -81,8 +81,8 @@ public class UserController<httpsession> {
 //  用户列表
     @RequestMapping("/selectAllUser")
     @ResponseBody
-    public R selectAllUser(@RequestBody User user) {
-        List<User> result = userService.selectAllUser(user);
+    public R selectAllUser() {
+        List<User> result = userService.selectAllUser();
        if(result!=null){
            return R.ok().put("data",result);
        }else{

@@ -2,6 +2,7 @@ package com.zyy.blog.modules.sys.dao;
 
 import com.zyy.blog.modules.sys.entity.Article;
 import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
+import com.zyy.blog.modules.sys.vo.ArticleListVo;
 
 import java.util.List;
 
@@ -62,7 +63,7 @@ public interface ArticleMapper {
      */
     int updateByPrimaryKey(Article record);
 
-    List<ArticleWithBLOBs> selectAllArticle();
+    List<ArticleListVo> selectAllArticle();
 
 
 

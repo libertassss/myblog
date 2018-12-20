@@ -56,5 +56,5 @@ public interface UserMapper {
 
     User selectByExample(User user);
 
-    List<User> selectAllUser(User user);
+    List<User> selectAllUser();
 }

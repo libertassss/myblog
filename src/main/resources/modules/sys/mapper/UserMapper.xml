@@ -263,7 +263,7 @@
     </where>
   </select>
 
-  <select id="selectAllUser" resultMap="AllUserList" parameterType="com.zyy.blog.modules.sys.entity.User">
+  <select id="selectAllUser" resultMap="AllUserList">
     select * from user
   </select>
 </mapper>

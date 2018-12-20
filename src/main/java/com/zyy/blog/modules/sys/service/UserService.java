@@ -15,8 +15,7 @@ public interface UserService {
 
     User login(User user);
 
-    List<User> selectAllUser(User user);
-
+    List<User> selectAllUser();
 
     void updateUser(User user);
 

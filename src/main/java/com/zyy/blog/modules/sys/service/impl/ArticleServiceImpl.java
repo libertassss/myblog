@@ -3,6 +3,7 @@ package com.zyy.blog.modules.sys.service.impl;
 import com.zyy.blog.modules.sys.dao.ArticleMapper;
 import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
 import com.zyy.blog.modules.sys.service.ArticleService;
+import com.zyy.blog.modules.sys.vo.ArticleListVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleWithBLOBs> selectAllArticle(){
+    public List<ArticleListVo> selectAllArticle(){
         return articleMapper.selectAllArticle();
     }
 }
