@@ -2,6 +2,7 @@ package com.zyy.blog.modules.sys.controller;
 
 import com.zyy.blog.commons.utils.R;
 import com.zyy.blog.commons.utils.Upload;
+import com.zyy.blog.modules.sys.entity.Article;
 import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
 import com.zyy.blog.modules.sys.service.ArticleService;
 import com.zyy.blog.modules.sys.vo.ArticleListVo;
@@ -31,7 +32,8 @@ public class ArticleController {
     @RequestMapping("/insertSelectev")
     @ResponseBody
     public R insertSelectev(@RequestBody ArticleWithBLOBs articleWithBLOBs){
-        if (articleService.insertSelective(articleWithBLOBs)!=0)
+        int flag=articleService.insertSelective(articleWithBLOBs);
+        if (flag!=0)
             return R.ok("成功");
         else return R.error(500,"失败");
     }
@@ -40,9 +42,30 @@ public class ArticleController {
     @ResponseBody
     public R selectAllArticle(){
         List<ArticleListVo> result=articleService.selectAllArticle();
-        if(articleService.selectAllArticle()!=null)
+        if(result!=null){
+
             return R.ok().put("data",articleService.selectAllArticle());
+        }
+
         else return R.error(500,"暂无文章列表");
+    }
+
+    @RequestMapping("/deleteByPrimaryKey")
+    @ResponseBody
+    public R deleteByPrimaryKey(@RequestBody Article article){
+        int flag=articleService.deleteByPrimaryKey(article.getArticleId());
+        if(flag!=0)
+            return R.ok("删除成功");
+        else return R.error(500,"删除失败");
+    }
+
+    @RequestMapping("/updateByPrimaryKey")
+    @ResponseBody
+    public R updateByPrimaryKey(@RequestBody Article article){
+        int flag=articleService.updateByPrimaryKey(article);
+        if(flag!=0)
+            return R.ok("修改成功");
+        else return R.error(500,"修改失败");
     }
 
 }

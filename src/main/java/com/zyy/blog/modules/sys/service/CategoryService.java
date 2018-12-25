@@ -2,7 +2,6 @@ package com.zyy.blog.modules.sys.service;
 
 import com.zyy.blog.modules.sys.entity.Category;
 import com.zyy.blog.modules.sys.vo.ParamsVo;
-import com.zyy.blog.modules.sys.vo.Tree;
 
 import java.util.List;
 
@@ -12,7 +11,7 @@ public interface CategoryService {
 
     List<Category> selectByExample(Category category);
 
-    List<Tree<Category>> selectAllCategory();
+    List<Category> selectAllCategory();
 
     int deleteCategory(Integer categoryId);
 

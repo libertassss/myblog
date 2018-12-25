@@ -1,6 +1,7 @@
 package com.zyy.blog.modules.sys.service.impl;
 
 import com.zyy.blog.modules.sys.dao.ArticleMapper;
+import com.zyy.blog.modules.sys.entity.Article;
 import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
 import com.zyy.blog.modules.sys.service.ArticleService;
 import com.zyy.blog.modules.sys.vo.ArticleListVo;
@@ -22,11 +23,22 @@ public class ArticleServiceImpl implements ArticleService {
         articleWithBLOBs.setArticlePostTime(new Date());
         articleWithBLOBs.setArticleIsComment(1);
         articleWithBLOBs.setArticleOrder(1);
+        articleWithBLOBs.setArticleStatus(0);
         return articleMapper.insertSelective(articleWithBLOBs);
     }
 
     @Override
     public List<ArticleListVo> selectAllArticle(){
         return articleMapper.selectAllArticle();
+    }
+
+    @Override
+    public  int deleteByPrimaryKey(int articleId){
+        return articleMapper.deleteByPrimaryKey(articleId);
+    }
+
+    @Override
+    public int updateByPrimaryKey(Article article){
+        return articleMapper.updateByPrimaryKey(article);
     }
 }

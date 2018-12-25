@@ -1,5 +1,6 @@
 package com.zyy.blog.modules.sys.service;
 
+import com.zyy.blog.modules.sys.entity.Article;
 import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
 import com.zyy.blog.modules.sys.vo.ArticleListVo;
 
@@ -9,4 +10,8 @@ public interface ArticleService {
     int insertSelective(ArticleWithBLOBs articleWithBLOBs);
 
     List<ArticleListVo> selectAllArticle();
+
+    int deleteByPrimaryKey(int articleId);
+
+    int updateByPrimaryKey(Article article);
 }

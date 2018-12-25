@@ -302,19 +302,22 @@
     <association property="category" javaType="com.zyy.blog.modules.sys.entity.Category">
       <id column="category_id" jdbcType="INTEGER" property="categoryId"></id>
       <result column="category_name" jdbcType="VARCHAR" property="categoryName"></result>
+      <result column="category_id" jdbcType="INTEGER" property="categoryId"></result>
     </association>
     <association property="user" javaType="com.zyy.blog.modules.sys.entity.User">
       <id column="user_id" jdbcType="INTEGER" property="userId"></id>
       <result column="user_nickname" jdbcType="VARCHAR" property="userNickname"></result>
+      <result column="user_id" jdbcType="INTEGER" property="userId"></result>
     </association>
     <collection property="tag" javaType="list" ofType="com.zyy.blog.modules.sys.entity.Tag">
       <id column="tag_id" property="tagId"></id>
-      <result column="tag_name" property="tagName"></result>
+      <result column="tag_name" jdbcType="VARCHAR" property="tagName"></result>
+      <result column="tag_id" jdbcType="INTEGER" property="tagId"></result>
     </collection>
   </resultMap>
 
   <select id="selectAllArticle" resultMap="WithTagAndCategoryResultMap">
-    select a.article_id,a.article_post_time,a.article_title,u.user_nickname,c.category_name,t.tag_name from user AS u,category AS c,tag AS t,article AS a where c.category_id=a.article_child_category_id and
+    select a.article_id,a.article_post_time,a.article_title,u.user_id,u.user_nickname,c.category_id,c.category_name,t.tag_name,t.tag_id from user AS u,category AS c,tag AS t,article AS a where c.category_id=a.article_child_category_id and
     u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids)
   </select>
 </mapper>

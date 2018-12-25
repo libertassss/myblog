@@ -39,25 +39,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Tree<Category>> selectAllCategory(){
-        List<Tree<Category>> trees=new ArrayList<Tree<Category>>();
-        List<Category> results=  categoryMapper.selectAllCategory();
-        for(Category result:results){
-            Tree<Category> tree=new Tree<Category>();
+    public List<Category> selectAllCategory(){
 
-            tree.setId(result.getCategoryId());
-            tree.setParentid(result.getCategoryPid());
-            try {
-                BeanUtils.copyProperties(tree,result);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-            trees.add(tree);
-        }
-        List<Tree<Category>> t= BuildTree.build(trees);
-        return t;
+        List<Category> results=  categoryMapper.selectAllCategory();
+        return results;
+
     }
 
     @Override

@@ -1,15 +1,20 @@
 package com.zyy.blog.modules.sys.controller;
 
+import com.zyy.blog.commons.utils.BuildTree;
 import com.zyy.blog.commons.utils.R;
 import com.zyy.blog.modules.sys.entity.Category;
 import com.zyy.blog.modules.sys.service.CategoryService;
 import com.zyy.blog.modules.sys.vo.ParamsVo;
+import com.zyy.blog.modules.sys.vo.Tree;
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,9 +41,25 @@ public class CategoryController {
     @RequestMapping("/selectAllCategory")
     @ResponseBody
     public R selectAllCategory(){
-        if(categoryService.selectAllCategory()!=null)
+        List<Category> results=categoryService.selectAllCategory();
+        List<Tree<Category>> trees=new ArrayList<Tree<Category>>();
+        for(Category result:results){
+            Tree<Category> tree=new Tree<Category>();
 
-            return R.ok().put("data",categoryService.selectAllCategory());
+            tree.setId(result.getCategoryId());
+            tree.setParentid(result.getCategoryPid());
+            try {
+                BeanUtils.copyProperties(tree,result);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            trees.add(tree);
+        }
+        List<Tree<Category>> t= BuildTree.build(trees);
+        if(results!=null)
+            return R.ok().put("data",t);
         else
             return R.error(500,"暂无类别");
     }
@@ -47,7 +68,8 @@ public class CategoryController {
     @RequestMapping("/deleteCategory")
     @ResponseBody
     public R deleteCategory(@RequestBody Category category){
-        if(categoryService.deleteCategory(category.getCategoryId())!=0)
+        int flag=categoryService.deleteCategory(category.getCategoryId());
+        if(flag!=0)
             return R.ok("删除成功");
         else
             return R.error(500,"删除失败");
