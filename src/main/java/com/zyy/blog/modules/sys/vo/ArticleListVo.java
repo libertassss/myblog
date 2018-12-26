@@ -18,6 +18,69 @@ public class ArticleListVo {
     private User user;
     private List<Tag> tag;
     private Category category;
+    private Integer articleViewCount;
+    private Integer articleCommentCount;
+    private Integer articleLikeCount;
+    private Integer articleIsComment;
+    private Integer articleStatus;
+    private Integer articleOrder;
+    private String articleContentMd;
+
+    public String getArticleContentMd() {
+        return articleContentMd;
+    }
+
+    public void setArticleContentMd(String articleContentMd) {
+        this.articleContentMd = articleContentMd;
+    }
+
+    public Integer getArticleCommentCount() {
+        return articleCommentCount;
+    }
+
+    public Integer getArticleIsComment() {
+        return articleIsComment;
+    }
+
+    public Integer getArticleLikeCount() {
+        return articleLikeCount;
+    }
+
+    public Integer getArticleOrder() {
+        return articleOrder;
+    }
+
+    public Integer getArticleViewCount() {
+        return articleViewCount;
+    }
+
+    public Integer getArticleStatus() {
+        return articleStatus;
+    }
+
+    public void setArticleCommentCount(Integer articleCommentCount) {
+        this.articleCommentCount = articleCommentCount;
+    }
+
+    public void setArticleIsComment(Integer articleIsComment) {
+        this.articleIsComment = articleIsComment;
+    }
+
+    public void setArticleLikeCount(Integer articleLikeCount) {
+        this.articleLikeCount = articleLikeCount;
+    }
+
+    public void setArticleOrder(Integer articleOrder) {
+        this.articleOrder = articleOrder;
+    }
+
+    public void setArticleStatus(Integer articleStatus) {
+        this.articleStatus = articleStatus;
+    }
+
+    public void setArticleViewCount(Integer articleViewCount) {
+        this.articleViewCount = articleViewCount;
+    }
 
 
     public String getArticleContent() {

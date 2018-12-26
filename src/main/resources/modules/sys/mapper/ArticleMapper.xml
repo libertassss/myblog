@@ -299,6 +299,14 @@
     <result column="article_id" jdbcType="INTEGER" property="articleId"></result>
     <result column="article_post_time" jdbcType="DATE" property="articlePostTime"></result>
     <result column="article_content_md" jdbcType="VARCHAR" property="articleContentMd"></result>
+    <result column="article_view_count" jdbcType="INTEGER" property="articleViewCount"></result>
+    <result column="article_comment_count" jdbcType="INTEGER" property="articleCommentCount"></result>
+    <result column="article_like_count" jdbcType="INTEGER" property="articleLikeCount"></result>
+    <result column="article_is_comment" jdbcType="INTEGER" property="articleIsComment"></result>
+    <result column="article_status" jdbcType="INTEGER" property="articleStatus"></result>
+    <result column="article_order" jdbcType="INTEGER" property="articleOrder"></result>
+    <result column="article_content" jdbcType="VARCHAR" property="articleContent"></result>
+    <result column="article_content_md" jdbcType="VARCHAR" property="articleContentMd"></result>
     <association property="category" javaType="com.zyy.blog.modules.sys.entity.Category">
       <id column="category_id" jdbcType="INTEGER" property="categoryId"></id>
       <result column="category_name" jdbcType="VARCHAR" property="categoryName"></result>
@@ -317,7 +325,7 @@
   </resultMap>
 
   <select id="selectAllArticle" resultMap="WithTagAndCategoryResultMap">
-    select a.article_id,a.article_post_time,a.article_title,u.user_id,u.user_nickname,c.category_id,c.category_name,t.tag_name,t.tag_id from user AS u,category AS c,tag AS t,article AS a where c.category_id=a.article_child_category_id and
+    select a.article_id,a.article_post_time,a.article_content,a.article_content_md,a.article_title,a.article_view_count,a.article_comment_count,a.article_like_count,a.article_is_comment,a.article_status,a.article_order,u.user_id,u.user_nickname,c.category_id,c.category_name,t.tag_name,t.tag_id from user AS u,category AS c,tag AS t,article AS a where c.category_id=a.article_child_category_id and
     u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids)
   </select>
 </mapper>

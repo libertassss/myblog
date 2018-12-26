@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 
 public class Upload {
-    private String URL="localhost:8081/static/images/uplaod/";
+    private String URL="/static/images/uplaod/";
     public R Uopload(HttpServletRequest req, @RequestParam("file") MultipartFile file){
         if(!file.isEmpty()) {
             String fileName = System.currentTimeMillis() + file.getOriginalFilename();

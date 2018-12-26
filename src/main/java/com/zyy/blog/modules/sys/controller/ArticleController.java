@@ -21,14 +21,14 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     ArticleService articleService;
-
+//上传图片
     @RequestMapping("/uploadImg")
     @ResponseBody
     public R uploadImg(HttpServletRequest req, @RequestParam("file") MultipartFile file){
         Upload upload=new Upload();
         return upload.Uopload(req,file);
     }
-
+//文章提交
     @RequestMapping("/insertSelectev")
     @ResponseBody
     public R insertSelectev(@RequestBody ArticleWithBLOBs articleWithBLOBs){
