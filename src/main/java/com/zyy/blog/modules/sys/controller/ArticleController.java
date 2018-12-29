@@ -6,6 +6,7 @@ import com.zyy.blog.modules.sys.entity.Article;
 import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
 import com.zyy.blog.modules.sys.service.ArticleService;
 import com.zyy.blog.modules.sys.vo.ArticleListVo;
+import com.zyy.blog.modules.sys.vo.ParamsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,14 +22,25 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     ArticleService articleService;
-//上传图片
+
+    /**
+     * 上传图片
+     * @param req
+     * @param file
+     * @return
+     */
     @RequestMapping("/uploadImg")
     @ResponseBody
     public R uploadImg(HttpServletRequest req, @RequestParam("file") MultipartFile file){
         Upload upload=new Upload();
         return upload.Uopload(req,file);
     }
-//文章提交
+
+    /**
+     * 新增文章
+     * @param articleWithBLOBs
+     * @return
+     */
     @RequestMapping("/insertSelectev")
     @ResponseBody
     public R insertSelectev(@RequestBody ArticleWithBLOBs articleWithBLOBs){
@@ -38,6 +50,10 @@ public class ArticleController {
         else return R.error(500,"失败");
     }
 
+    /**
+     * 文章列表
+     * @return
+     */
     @RequestMapping("/selectAllArticle")
     @ResponseBody
     public R selectAllArticle(){
@@ -50,6 +66,11 @@ public class ArticleController {
         else return R.error(500,"暂无文章列表");
     }
 
+    /**
+     * 删除文章，单条
+     * @param article
+     * @return
+     */
     @RequestMapping("/deleteByPrimaryKey")
     @ResponseBody
     public R deleteByPrimaryKey(@RequestBody Article article){
@@ -59,6 +80,11 @@ public class ArticleController {
         else return R.error(500,"删除失败");
     }
 
+    /**
+     * 编辑
+     * @param article
+     * @return
+     */
     @RequestMapping("/updateByPrimaryKey")
     @ResponseBody
     public R updateByPrimaryKey(@RequestBody Article article){
@@ -66,6 +92,20 @@ public class ArticleController {
         if(flag!=0)
             return R.ok("修改成功");
         else return R.error(500,"修改失败");
+    }
+
+    /**
+     * 批量删除
+     * @param paramsVo
+     * @return
+     */
+    @RequestMapping("/deleteArticleMall")
+    @ResponseBody
+    public R deleteArticleMall(@RequestBody ParamsVo paramsVo){
+        int flag=articleService.deleteArticleMall(paramsVo);
+        if(flag!=0)
+            return R.ok("删除成功");
+        else return R.error(500,"删除失败");
     }
 
 }

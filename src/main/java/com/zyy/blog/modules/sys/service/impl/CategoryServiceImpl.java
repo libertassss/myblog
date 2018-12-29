@@ -51,6 +51,11 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.deleteByPrimaryKey(categoryId);
     }
 
+    /**
+     * 批量删除
+     * @param paramsVo
+     * @return
+     */
     @Override
     public int deleteCategoryMall(ParamsVo paramsVo){
         return categoryMapper.deleteCategoryMall(paramsVo.getItem());

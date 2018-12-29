@@ -146,4 +146,8 @@
       menu_status = #{menuStatus,jdbcType=INTEGER}
     where menu_id = #{menuId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from menu
+  </select>
 </mapper>

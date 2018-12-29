@@ -22,6 +22,11 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
+    /**
+     * 新增类别
+     * @param category
+     * @return
+     */
     @RequestMapping("/insertCategory")
     @ResponseBody
     public R insertCategory(@RequestBody Category category){
@@ -38,6 +43,10 @@ public class CategoryController {
 
     }
 
+    /**
+     * 类别列表，嵌套
+     * @return
+     */
     @RequestMapping("/selectAllCategory")
     @ResponseBody
     public R selectAllCategory(){
@@ -64,7 +73,11 @@ public class CategoryController {
             return R.error(500,"暂无类别");
     }
 
-//    删除单条数据
+    /**
+     * 删除单条数据
+     * @param category
+     * @return
+     */
     @RequestMapping("/deleteCategory")
     @ResponseBody
     public R deleteCategory(@RequestBody Category category){
@@ -76,7 +89,11 @@ public class CategoryController {
     }
 
 
-//    批量删除
+    /**
+     * 批量删除
+     * @param paramsVo
+     * @return
+     */
     @RequestMapping("/deleteCategoryMall")
     @ResponseBody
     public R deleteCategoryMall(@RequestBody ParamsVo paramsVo){
@@ -88,7 +105,10 @@ public class CategoryController {
         }
     }
 
-//类别list
+    /**
+     * 类别列表
+     * @return
+     */
     @RequestMapping("/selectAll")
     @ResponseBody
     public R selectAll(){

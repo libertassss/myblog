@@ -8,4 +8,6 @@ public interface TagService {
     List<Tag> selectAllTags();
 
     int insertTag(Tag tag);
+
+    int deleteTag(Tag tag);
 }

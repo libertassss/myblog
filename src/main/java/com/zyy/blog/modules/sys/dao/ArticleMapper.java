@@ -65,6 +65,8 @@ public interface ArticleMapper {
 
     List<ArticleListVo> selectAllArticle();
 
+    int deleteArticleMall(List<Integer> item);
+
 
 
 
