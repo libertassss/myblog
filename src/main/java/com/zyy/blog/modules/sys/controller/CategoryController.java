@@ -117,4 +117,20 @@ public class CategoryController {
         else
             return R.error(500,"暂无类别");
     }
+
+    @RequestMapping("selectChildren")
+    @ResponseBody
+    public R selectChildren(@RequestBody Category category){
+        List<Integer> results=categoryService.selectChildren(category.getCategoryId());
+        ParamsVo paramsVo=new ParamsVo();
+        results.add(category.getCategoryId());
+        if (results!=null){
+            paramsVo.setItem(results);
+            int flag=categoryService.deleteCategoryMall(paramsVo);
+            if(flag!=0)
+                return R.ok("删除成功");
+            else
+                return R.error(500,"删除失败");
+        }else return R.error(500,"没有子级");
+    }
 }

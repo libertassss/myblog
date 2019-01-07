@@ -164,4 +164,8 @@
       #{item}
     </foreach>
   </delete>
+  
+  <select id="selectChildren" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select category_id from category where category_pid=#{categoryId}
+  </select>
 </mapper>

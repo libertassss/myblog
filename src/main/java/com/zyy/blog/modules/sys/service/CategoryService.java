@@ -45,4 +45,6 @@ public interface CategoryService {
      * @return
      */
     List<Category> selectAll();
+
+    List<Integer> selectChildren(Integer pid);
 }

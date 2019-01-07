@@ -65,4 +65,9 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Category> selectAll(){
         return categoryMapper.selectAllCategory();
     }
+
+    @Override
+    public List<Integer> selectChildren(Integer pid){
+        return categoryMapper.selectChildren(pid);
+    }
 }

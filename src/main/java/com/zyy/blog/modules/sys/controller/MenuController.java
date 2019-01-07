@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 public class MenuController {
     @Autowired
@@ -48,5 +50,18 @@ public class MenuController {
             return R.ok("删除成功");
         else
             return R.error(500,"删除失败");
+    }
+
+    /**
+     * 查询
+     * @return
+     */
+    @RequestMapping("/selecteMenu")
+    @ResponseBody
+    public R selectMenu(){
+        List<Menu> results=menuService.selectAll();
+        if (results!=null)
+            return R.ok().put("data",results);
+        else return R.error(500,"暂无数据列表");
     }
 }
