@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ArticleController {
@@ -51,16 +53,34 @@ public class ArticleController {
     }
 
     /**
-     * 文章列表
+     * 分页文章列表
      * @return
      */
     @RequestMapping("/selectAllArticle")
     @ResponseBody
-    public R selectAllArticle(){
-        List<ArticleListVo> result=articleService.selectAllArticle();
-        if(result!=null){
+    public R selectAllArticle(@RequestBody ArticleWithBLOBs articleWithBLOBs,HttpServletRequest request){
+        /**
+         * 获取页码参数
+         */
+        String pageNow=(request.getQueryString().split("="))[1];
 
-            return R.ok().put("data",articleService.selectAllArticle());
+        Integer total=articleService.selectCount();
+        Map<String,Object> map=new HashMap<String,Object>();
+        map.put("psize",articleWithBLOBs.getPsize());
+        map.put("pstart",(Integer.valueOf(pageNow)-1)*articleWithBLOBs.getPsize());
+
+        List<ArticleListVo> result=articleService.selectAllArticle(map);
+
+        Map<String,Object> data=new HashMap<>();
+        data.put("articleList",result);
+        data.put("next",Integer.valueOf(pageNow)+1);
+        if ((total % articleWithBLOBs.getPsize())==0)
+            data.put("total",total / articleWithBLOBs.getPsize());
+        else
+            data.put("total",total / articleWithBLOBs.getPsize()+1);
+
+        if(result!=null){
+            return  R.ok().put("data",data);
         }
 
         else return R.error(500,"暂无文章列表");
@@ -106,6 +126,21 @@ public class ArticleController {
         if(flag!=0)
             return R.ok("删除成功");
         else return R.error(500,"删除失败");
+    }
+
+
+    /**
+     * 根据Id查询文章
+     * @param article
+     * @return
+     */
+    @RequestMapping("/selectArticleById")
+    @ResponseBody
+    public R selectArticleById(@RequestBody Article article){
+        Article result=articleService.selectArticleById(article.getArticleId());
+        if(result!=null)
+            return R.ok().put("data",result);
+        else return R.error(500,"没有该文章");
     }
 
 }

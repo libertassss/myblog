@@ -5,6 +5,7 @@ import com.zyy.blog.modules.sys.entity.ArticleWithBLOBs;
 import com.zyy.blog.modules.sys.vo.ArticleListVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ArticleMapper {
     /**
@@ -63,9 +64,15 @@ public interface ArticleMapper {
      */
     int updateByPrimaryKey(Article record);
 
-    List<ArticleListVo> selectAllArticle();
+    List<ArticleListVo> selectAllArticle(Map map);
 
     int deleteArticleMall(List<Integer> item);
+
+    /**
+     * 查询总量
+     * @return
+     */
+    Integer selectCount();
 
 
 

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -38,8 +39,8 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public List<ArticleListVo> selectAllArticle(){
-        return articleMapper.selectAllArticle();
+    public List<ArticleListVo> selectAllArticle(Map map){
+        return articleMapper.selectAllArticle(map);
     }
 
 
@@ -71,5 +72,25 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int deleteArticleMall(ParamsVo paramsVo){
         return articleMapper.deleteArticleMall(paramsVo.getItem());
+    }
+
+    /**
+     * 根据Id查询文章
+     * @param articleId
+     * @return
+     */
+    @Override
+    public Article selectArticleById(Integer articleId){
+        return articleMapper.selectByPrimaryKey(articleId);
+    }
+
+
+    /**
+     * 查询总量
+     * @return
+     */
+    @Override
+    public Integer selectCount(){
+        return articleMapper.selectCount();
     }
 }

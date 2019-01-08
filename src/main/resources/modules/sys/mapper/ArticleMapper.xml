@@ -324,9 +324,14 @@
     </collection>
   </resultMap>
 
-  <select id="selectAllArticle" resultMap="WithTagAndCategoryResultMap">
+  <select id="selectAllArticle" resultMap="WithTagAndCategoryResultMap" parameterType="map">
     select a.article_id,a.article_post_time,a.article_content,a.article_content_md,a.article_title,a.article_view_count,a.article_comment_count,a.article_like_count,a.article_is_comment,a.article_status,a.article_order,u.user_id,u.user_nickname,c.category_id,c.category_name,t.tag_name,t.tag_id from user AS u,category AS c,tag AS t,article AS a where c.category_id=a.article_child_category_id and
-    u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids)
+    u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids) limit #{pstart},#{psize}
+  </select>
+  
+  <!--查询总数-->
+  <select id="selectCount" resultType="INTEGER">
+    select Count(1) ROWS from article
   </select>
 
   <!--批量删除-->

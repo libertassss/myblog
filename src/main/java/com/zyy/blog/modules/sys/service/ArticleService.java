@@ -6,8 +6,10 @@ import com.zyy.blog.modules.sys.vo.ArticleListVo;
 import com.zyy.blog.modules.sys.vo.ParamsVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ArticleService {
+
     /**
      * 新增文章
      * @param articleWithBLOBs
@@ -16,10 +18,11 @@ public interface ArticleService {
     int insertSelective(ArticleWithBLOBs articleWithBLOBs);
 
     /**
-     * 查询文章列表
+     * 分页查询文章列表
      * @return
      */
-    List<ArticleListVo> selectAllArticle();
+
+    List<ArticleListVo> selectAllArticle(Map map);
 
     /**
      * 单挑删除
@@ -41,4 +44,12 @@ public interface ArticleService {
      * @return
      */
     int deleteArticleMall(ParamsVo paramsVo);
+
+    Article selectArticleById(Integer articleId);
+
+    /**
+     * 查询总量
+     * @return
+     */
+    Integer selectCount();
 }
