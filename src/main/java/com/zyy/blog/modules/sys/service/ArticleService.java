@@ -47,9 +47,17 @@ public interface ArticleService {
 
     Article selectArticleById(Integer articleId);
 
+    ArticleListVo selectAllArticleById(Integer articleId);
+
     /**
      * 查询总量
      * @return
      */
     Integer selectCount();
+
+    List<Article> selectAlls();
+
+    Article selectTop(Integer articleId);
+
+    Article selectNext(Integer articleId);
 }

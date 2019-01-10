@@ -143,4 +143,53 @@ public class ArticleController {
         else return R.error(500,"没有该文章");
     }
 
+    @RequestMapping("/selectAllArticleById")
+    @ResponseBody
+    public R selectAllArticleById(@RequestBody Article article){
+        ArticleListVo result=articleService.selectAllArticleById(article.getArticleId());
+        if (result!=null)
+            return R.ok().put("data",result);
+        else return R.error(500,"文章不存在");
+    }
+
+    @RequestMapping("/selectAlls")
+    @ResponseBody
+    public R selectAlls(){
+        List<Article> results=articleService.selectAlls();
+        if (results!=null)
+            return R.ok().put("data",results);
+        else
+            return R.error(500,"暂无文章");
+    }
+
+    /**
+     * 上一条
+     * @param article
+     * @return
+     */
+    @RequestMapping("/selectTop")
+    @ResponseBody
+    public R selectTop(@RequestBody Article article){
+        Article result=articleService.selectTop(article.getArticleId());
+        if (result!=null)
+            return R.ok().put("data",result);
+        else
+            return R.error(500,"没有上一条");
+    }
+
+
+    /**
+     * 下一条
+     * @param article
+     * @return
+     */
+    @RequestMapping("/selectNext")
+    @ResponseBody
+    public R selectNext(@RequestBody Article article){
+        Article result=articleService.selectNext(article.getArticleId());
+        if (result!=null)
+            return R.ok().put("data",result);
+        else
+            return R.error(500,"没有下一条");
+    }
 }

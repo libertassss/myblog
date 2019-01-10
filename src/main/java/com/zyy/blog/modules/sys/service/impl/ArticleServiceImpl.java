@@ -84,6 +84,11 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.selectByPrimaryKey(articleId);
     }
 
+    @Override
+    public ArticleListVo selectAllArticleById(Integer articleId){
+        return articleMapper.selectAllArticleById(articleId);
+    }
+
 
     /**
      * 查询总量
@@ -92,5 +97,30 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Integer selectCount(){
         return articleMapper.selectCount();
+    }
+
+    @Override
+    public List<Article> selectAlls(){
+        return articleMapper.selectAlls();
+    }
+
+    /**
+     * 查询上一条
+     * @param articleId
+     * @return
+     */
+    @Override
+    public Article selectTop(Integer articleId){
+        return articleMapper.selectTop(articleId);
+    }
+
+    /**
+     * 查询下一条
+     * @param articleId
+     * @return
+     */
+    @Override
+    public Article selectNext(Integer articleId){
+        return articleMapper.selectNext(articleId);
     }
 }

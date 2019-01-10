@@ -74,7 +74,21 @@ public interface ArticleMapper {
      */
     Integer selectCount();
 
+    ArticleListVo selectAllArticleById(Integer id);
 
+    List<Article> selectAlls();
 
+    /**
+     * 查询上一条
+     * @param articleId
+     * @return
+     */
+    Article selectTop(Integer articleId);
 
+    /**
+     * 查询下一条
+     * @param articleId
+     * @return
+     */
+    Article selectNext(Integer articleId);
 }
