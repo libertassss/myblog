@@ -110,7 +110,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public Article selectTop(Integer articleId){
+    public ArticleListVo selectTop(Integer articleId){
         return articleMapper.selectTop(articleId);
     }
 
@@ -120,7 +120,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @return
      */
     @Override
-    public Article selectNext(Integer articleId){
+    public ArticleListVo selectNext(Integer articleId){
         return articleMapper.selectNext(articleId);
     }
 }

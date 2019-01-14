@@ -57,7 +57,7 @@ public interface ArticleService {
 
     List<Article> selectAlls();
 
-    Article selectTop(Integer articleId);
+    ArticleListVo selectTop(Integer articleId);
 
-    Article selectNext(Integer articleId);
+    ArticleListVo selectNext(Integer articleId);
 }

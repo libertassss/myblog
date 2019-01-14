@@ -352,12 +352,14 @@
   </select>
 
   <!--查找上一条-->
-  <select id="selectTop" resultMap="BaseResultMap" parameterType="INTEGER">
-    select * from article where article_id=(select article_id from article where article_id &lt; #{articleId} order by article_id desc limit 1)
+  <select id="selectTop" resultMap="WithTagAndCategoryResultMap" parameterType="INTEGER">
+    select a.article_id,a.article_post_time,a.article_content,a.article_content_md,a.article_title,a.article_view_count,a.article_comment_count,a.article_like_count,a.article_is_comment,a.article_status,a.article_order,u.user_id,u.user_nickname,c.category_id,c.category_name,t.tag_name,t.tag_id from user AS u,category AS c,tag AS t,article AS a where a.article_id=(select article_id from article where article_id &lt; #{articleId} order by article_id desc limit 1) and c.category_id=a.article_child_category_id and
+    u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids)
   </select>
 
   <!--查找下一条-->
-  <select id="selectNext" resultMap="BaseResultMap" parameterType="INTEGER">
-    select * from article where article_id=(select article_id from article where article_id &gt; #{articleId} order by article_id asc limit 1)
+  <select id="selectNext" resultMap="WithTagAndCategoryResultMap" parameterType="INTEGER">
+    select a.article_id,a.article_post_time,a.article_content,a.article_content_md,a.article_title,a.article_view_count,a.article_comment_count,a.article_like_count,a.article_is_comment,a.article_status,a.article_order,u.user_id,u.user_nickname,c.category_id,c.category_name,t.tag_name,t.tag_id from user AS u,category AS c,tag AS t,article AS a where a.article_id=(select article_id from article where article_id &gt; #{articleId} order by article_id asc limit 1) and c.category_id=a.article_child_category_id and
+    u.user_id=a.article_user_id and find_in_set(t.tag_id,a.article_tag_ids)
   </select>
 </mapper>

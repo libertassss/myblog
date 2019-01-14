@@ -138,8 +138,11 @@ public class ArticleController {
     @ResponseBody
     public R selectArticleById(@RequestBody Article article){
         Article result=articleService.selectArticleById(article.getArticleId());
-        if(result!=null)
+
+        if(result!=null){
+
             return R.ok().put("data",result);
+        }
         else return R.error(500,"没有该文章");
     }
 
@@ -147,8 +150,17 @@ public class ArticleController {
     @ResponseBody
     public R selectAllArticleById(@RequestBody Article article){
         ArticleListVo result=articleService.selectAllArticleById(article.getArticleId());
-        if (result!=null)
-            return R.ok().put("data",result);
+        ArticleListVo topArticle=articleService.selectTop(article.getArticleId());
+        ArticleListVo nextArticle=articleService.selectNext(article.getArticleId());
+        if (result!=null){
+            Map<String,Object> map=new HashMap<>();
+            map.put("topArticle",topArticle);
+            map.put("nextArticle",nextArticle);
+            map.put("data",result);
+            return R.ok().put("data",map);
+        }
+
+
         else return R.error(500,"文章不存在");
     }
 
@@ -170,7 +182,7 @@ public class ArticleController {
     @RequestMapping("/selectTop")
     @ResponseBody
     public R selectTop(@RequestBody Article article){
-        Article result=articleService.selectTop(article.getArticleId());
+        ArticleListVo result=articleService.selectTop(article.getArticleId());
         if (result!=null)
             return R.ok().put("data",result);
         else
@@ -186,7 +198,7 @@ public class ArticleController {
     @RequestMapping("/selectNext")
     @ResponseBody
     public R selectNext(@RequestBody Article article){
-        Article result=articleService.selectNext(article.getArticleId());
+        ArticleListVo result=articleService.selectNext(article.getArticleId());
         if (result!=null)
             return R.ok().put("data",result);
         else

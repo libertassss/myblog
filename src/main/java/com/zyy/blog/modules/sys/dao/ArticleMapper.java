@@ -83,12 +83,12 @@ public interface ArticleMapper {
      * @param articleId
      * @return
      */
-    Article selectTop(Integer articleId);
+    ArticleListVo selectTop(Integer articleId);
 
     /**
      * 查询下一条
      * @param articleId
      * @return
      */
-    Article selectNext(Integer articleId);
+    ArticleListVo selectNext(Integer articleId);
 }
