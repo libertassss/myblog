@@ -123,4 +123,24 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleListVo selectNext(Integer articleId){
         return articleMapper.selectNext(articleId);
     }
+
+    /**
+     * 修改
+     * @param articleWithBLOBs
+     * @return
+     */
+    @Override
+    public int updateByPrimaryKeySelective(ArticleWithBLOBs articleWithBLOBs){
+        return articleMapper.updateByPrimaryKeySelective(articleWithBLOBs);
+    }
+
+    /**
+     * 模糊查询
+     * @param article
+     * @return
+     */
+    @Override
+    public List<ArticleListVo> selectLike(Article article){
+        return articleMapper.selectLike(article);
+    }
 }

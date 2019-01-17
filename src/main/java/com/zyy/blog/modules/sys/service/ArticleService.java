@@ -60,4 +60,8 @@ public interface ArticleService {
     ArticleListVo selectTop(Integer articleId);
 
     ArticleListVo selectNext(Integer articleId);
+
+    int updateByPrimaryKeySelective(ArticleWithBLOBs articleWithBLOBs);
+
+    List<ArticleListVo> selectLike(Article article);
 }

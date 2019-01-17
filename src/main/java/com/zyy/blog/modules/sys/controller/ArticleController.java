@@ -204,4 +204,33 @@ public class ArticleController {
         else
             return R.error(500,"没有下一条");
     }
+
+    /**
+     * 编辑
+     * @param articleWithBLOBs
+     * @return
+     */
+    @RequestMapping("/updateByPrimaryKeySelective")
+    @ResponseBody
+    public R updateByPrimaryKeySelective(@RequestBody ArticleWithBLOBs articleWithBLOBs){
+        int flag=articleService.updateByPrimaryKeySelective(articleWithBLOBs);
+        if (flag!=0)
+            return R.ok("编辑成功");
+        else return R.error(500,"编辑失败");
+    }
+
+    /**
+     * 模糊查询
+     * @param article
+     * @return
+     */
+    @RequestMapping("/selectLike")
+    @ResponseBody
+    public R selectLike(@RequestBody Article article){
+        List<ArticleListVo> results=articleService.selectLike(article);
+        if (results!=null)
+            return R.ok().put("data",results);
+        else
+            return R.error(500,"查询失败");
+    }
 }

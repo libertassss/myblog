@@ -91,4 +91,11 @@ public interface ArticleMapper {
      * @return
      */
     ArticleListVo selectNext(Integer articleId);
+
+    /**
+     * 模糊查询
+     * @param article
+     * @return
+     */
+    List<ArticleListVo> selectLike(Article article);
 }
